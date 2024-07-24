@@ -1,4 +1,0 @@
-Usuario: id:bigint (pk), nombre:varchar, apellidos:varchar, contraseña:varchar, rol:varchar
-Cliente: id:bigint (pk), nombre:varchar, direccion:varchar
-Grua: id:bigint (pk), nombre:varchar
-Tarea: id:bigint (pk), fecha_inicio:datetime, fecha_final:datetime, duracion:integer, usuario (fk:Usuario[id]), grua (fk:Grua[id]), cliente (fk:Cliente[id])
