@@ -23,7 +23,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.example.demo.dto.Usuari;
+import com.example.demo.dto.Usuario;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.jsonwebtoken.Jwts;
@@ -40,7 +40,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
 			try {
-				Usuari cred = new ObjectMapper().readValue(request.getInputStream(), Usuari.class);
+				Usuario cred = new ObjectMapper().readValue(request.getInputStream(), Usuario.class);
 				return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
 						cred.getUsername(), cred.getPassword(), new ArrayList<>()));
 			} catch(IOException e) {
