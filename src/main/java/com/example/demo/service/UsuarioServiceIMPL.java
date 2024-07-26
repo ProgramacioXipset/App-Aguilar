@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.IUsuarioDAO;
+import com.example.demo.dto.Cliente;
 import com.example.demo.dto.Usuario;
 
 @Service
@@ -26,5 +27,8 @@ public class UsuarioServiceIMPL implements UserDetailsService {
 		}
 		return new User(Usuario.getUsername(), Usuario.getPassword(), AuthorityUtils.createAuthorityList(Usuario.getRol()));
 	}
-
+	
+	public Usuario actualizarUsuario(Usuario Usuario) {
+		return iUsuarioDAO.save(Usuario);
+	}
 }
