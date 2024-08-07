@@ -1,23 +1,35 @@
 <div class="contenedor">
   <img class="mb-4" src="Logo_aguilar_transparente.png" alt="Logo" height="100" width="100" style="align-self: center;">
   <main class="form-signin w-100 text-center">
-    <form name="form" novalidate>
-      <h4 class="mb-3 fw-normal">Iniciar sesión</h4>
+    @if (!isLoggedIn) {
+      <form name="form" (ngSubmit)="f.form.valid && logUser()" #f="ngForm" novalidate>
+        <h4 class="mb-3 fw-normal">Iniciar sesión</h4>
 
-      <div class="form-floating">
-        <input type="email" class="form-control primer-campo" id="floatingInput" placeholder="name@example.com"  name="username" required>
-        <label for="floatingInput">Nombre de usuario</label>
-      </div>
-      <div class="form-floating">
-        <input type="password" class="form-control segundo-campo" id="floatingPassword" placeholder="Password" name="password" required>
-        <label for="floatingPassword">Contraseña</label>
-      </div>
-      <div class="py-4">
-        <input type="checkbox" name="rememberUser"> Recordar usuari
-      </div>
+        <div class="form-floating">
+          <input type="email" class="form-control primer-campo" id="floatingInput" placeholder="name@example.com" [(ngModel)]="login.username" name="username" required>
+          <label for="floatingInput">Nombre de usuario</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control segundo-campo" id="floatingPassword" placeholder="Password" [(ngModel)]="login.password" name="password" required>
+          <label for="floatingPassword">Contraseña</label>
+        </div>
+        <div class="py-4">
+          <input type="checkbox" [(ngModel)]="rememberUser" name="rememberUser"> Recordar usuari
+        </div>
 
-      <button class="w-100 btn btn-lg btn-primary" type="submit" id="login">Entrar</button>
-
-    </form>
+        <button class="w-100 btn btn-lg btn-primary" type="submit" id="login">Entrar</button>
+        @if (isLoginFailed) {
+          <div>
+            <p style="color: red; text-align: center;">Les credencials no son correctes</p>
+          </div>
+        }
+      </form>
+    }
+    @if (isLoggedIn) {
+      <div id="si">
+        <h3 style="text-align: center;">Bienvingut <b>{{ login.username }}</b></h3>
+        <button class="btn btn-success mt-5" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" [routerLink]="['/dashboard']">Continuar</button>
+      </div>
+    }
   </main>
 </div>
