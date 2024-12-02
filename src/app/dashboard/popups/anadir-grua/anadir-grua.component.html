@@ -1,0 +1,12 @@
+<div class="container">
+    <h2>Añadir grúa</h2>
+
+    <form [formGroup]="options" (ngSubmit)="submitForm()">
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre de la grúa</mat-label>
+            <input matInput placeholder="Ejemplo: 12mt" [formControl]="nombreGrua">
+        </mat-form-field>
+
+        <button mat-flat-button>Añadir</button>
+    </form>
+</div>

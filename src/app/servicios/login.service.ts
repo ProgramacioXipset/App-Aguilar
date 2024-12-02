@@ -66,15 +66,15 @@ export class LoginService {
   }
 
   loadAuthenticationState(): void {
-    // const authTokenSession = sessionStorage.getItem('auth-token');
-    // const authUsernameSession = sessionStorage.getItem('auth-username');
-    // const authTokenLocal = localStorage.getItem('auth-token');
-    // const authUsernameLocal = localStorage.getItem('auth-username');
+    const authTokenSession = sessionStorage.getItem('auth-token');
+    const authUsernameSession = sessionStorage.getItem('auth-username');
+    const authTokenLocal = localStorage.getItem('auth-token');
+    const authUsernameLocal = localStorage.getItem('auth-username');
 
-    // if ((authTokenSession && authUsernameSession) || (authTokenLocal && authUsernameLocal)) {
-    //   this.isAuthenticated = true;
-    // } else {
-    //   this.isAuthenticated = false;
-    // }
+    if ((authTokenSession && authUsernameSession) || (authTokenLocal && authUsernameLocal)) {
+      this.isAuthenticated = true;
+    } else {
+      this.isAuthenticated = false;
+    }
   }
 }

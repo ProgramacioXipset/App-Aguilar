@@ -1,0 +1,14 @@
+.contenedor, .superior, .inferior {
+  display: flex;
+  align-content: space-around;
+  justify-content: space-around;
+}
+
+.contenedor {
+  flex-direction: column;
+  height: 100%;
+}
+
+.superior, .inferior {
+  flex-direction: row;
+}

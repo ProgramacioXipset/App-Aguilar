@@ -1,0 +1,15 @@
+<div class="contenedor">
+    <h2>Lista de clientes</h2>
+    <table>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Dirección</th>
+        <ng-container *ngFor="let cliente of clientes">
+            <tr (click)="openDialog(cliente)">
+                <td>{{ cliente.id }}</td>
+                <td>{{ cliente.nombre }}</td>
+                <td>{{ cliente.direccion }}</td>
+            </tr>
+        </ng-container>
+    </table>
+</div>

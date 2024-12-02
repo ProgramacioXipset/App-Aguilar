@@ -1,1 +1,32 @@
-<p>dashboard works!</p>
+<table class="tabla">
+  <tr>
+    <th>
+      <app-opciones></app-opciones>
+    </th>
+    <th>{{ hoy | date }}</th>
+    <th>{{ hoy.getTime() + 24 * 60 * 60 * 1000 | date }}</th>
+    <th>{{ hoy.getTime() + 48 * 60 * 60 * 1000 | date }}</th>
+    <th>{{ hoy.getTime() + 72 * 60 * 60 * 1000 | date }}</th>
+    <th>{{ hoy.getTime() + 96 * 60 * 60 * 1000 | date }}</th>
+    <th>{{ hoy.getTime() + 120 * 60 * 60 * 1000 | date }}</th>
+    <th>{{ hoy.getTime() + 144 * 60 * 60 * 1000 | date }}</th>
+    <th>{{ hoy.getTime() + 168 * 60 * 60 * 1000 | date }}</th>
+  </tr>
+  <ng-container *ngFor="let usuario of usuarios">
+    <ng-container *ngIf="usuario.rol != 'ADMIN'">
+      <tr>
+        <th>
+          {{ usuario.username }}
+        </th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </ng-container>
+  </ng-container>
+</table>

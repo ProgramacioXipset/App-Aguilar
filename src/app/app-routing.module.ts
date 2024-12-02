@@ -5,10 +5,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './auth/auth-guard.service';
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' }, // Redirige '/' a '/login'
-  // Otras rutas de la aplicación
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({

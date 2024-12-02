@@ -1,0 +1,13 @@
+<div class="contenedor">
+    <h2>Lista de grúas</h2>
+    <table>
+        <th>Id</th>
+        <th>Nombre</th>
+        <ng-container *ngFor="let grua of gruas">
+            <tr (click)="openDialog(grua)">
+                <td>{{ grua.id }}</td>
+                <td>{{ grua.nombre }}</td>
+            </tr>
+        </ng-container>
+    </table>
+</div>

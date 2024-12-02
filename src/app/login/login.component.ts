@@ -33,6 +33,8 @@ export class LoginComponent implements OnInit {
       // Aquí puedes realizar una verificación adicional del token si es necesario
       this.isLoggedIn = true;
       this.loginService.login();
+      // Redirigir al dashboard después de un inicio de sesión exitoso
+      this.router.navigate(['/dashboard']);
     }
 
     const savedUsername = sessionStorage.getItem('rememberedUsername');
@@ -62,6 +64,9 @@ export class LoginComponent implements OnInit {
         } else {
           localStorage.removeItem('rememberedUsername');
         }
+
+        // Redirigir al dashboard después de un inicio de sesión exitoso
+        this.router.navigate(['/dashboard']);
       },
       error: (error) => {
         console.log(error);
