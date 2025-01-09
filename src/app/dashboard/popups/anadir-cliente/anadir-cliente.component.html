@@ -4,12 +4,12 @@
     <form [formGroup]="options" (ngSubmit)="submitForm()">
         <mat-form-field appearance="outline">
             <mat-label>Nombre</mat-label>
-            <input matInput placeholder="Ejemplo: Kellogg's" [formControl]="nombreCliente">
+            <input matInput placeholder="Ejemplo: Kellogg's" [formControl]="nombreCliente" required>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Dirección</mat-label>
-            <input matInput placeholder="Ejemplo: Ctra. Tarragona, 1, 43800, Valls Tarragona España" [formControl]="direccionCliente">
+            <input matInput placeholder="Ejemplo: Ctra. Tarragona, 1, 43800, Valls Tarragona España" [formControl]="direccionCliente" required>
         </mat-form-field>
 
         <button mat-flat-button>Añadir</button>

@@ -86,4 +86,13 @@ export class GruaService {
   getGruas (): Observable<Grua[]> {
     return this.http.get<Grua []>("http://localhost:8181/Grua");
   }
+
+  encontrarGrua(id: number, arrayGrua: Grua[]): Grua | null {
+    for(const grua of arrayGrua) {
+      if (grua.id === id) {
+        return grua;
+      }
+    }
+    return null;
+  }
 }

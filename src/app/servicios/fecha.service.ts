@@ -8,7 +8,7 @@ export class FechaService {
   private fechaSubject: Subject<Date> = new Subject<Date>();
   currentDate$ = this.fechaSubject.asObservable();
 
-  hoy: Date = new Date();
+  hoy: Date = this.getInicioDelDia(new Date());
 
   constructor() {
     this.hoy = new Date();
@@ -32,5 +32,9 @@ export class FechaService {
 
   getHoy(): Date {
     return this.hoy;
+  }
+
+  private getInicioDelDia(fecha: Date): Date {
+    return new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate());
   }
 }

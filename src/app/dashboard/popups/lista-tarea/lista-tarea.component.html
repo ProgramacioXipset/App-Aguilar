@@ -1,0 +1,23 @@
+<div class="contenedor">
+    <h2>Lista de tareas</h2>
+    <table>
+        <th>Id</th>
+        <th>Inicio</th>
+        <th>Final</th>
+        <th>Duración</th>
+        <th>Usuario</th>
+        <th>Grua</th>
+        <th>Cliente</th>
+        <ng-container *ngFor="let tarea of tareas">
+            <tr (click)="openDialog(tarea)">
+                <td>{{ tarea.id }}</td>
+                <td>{{ tarea.fecha_inicio }}</td>
+                <td>{{ tarea.fecha_final }}</td>
+                <td>{{ tarea.duracion }}</td>
+                <td>{{ tarea.usuario?.username }}</td>
+                <td>{{ tarea.grua?.nombre }}</td>
+                <td>{{ tarea.cliente?.nombre }}</td>
+            </tr>
+        </ng-container>
+    </table>
+</div>

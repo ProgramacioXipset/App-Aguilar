@@ -4,12 +4,12 @@
     <form [formGroup]="options" (ngSubmit)="submitForm()">
         <mat-form-field appearance="outline">
             <mat-label>Nombre del cliente</mat-label>
-            <input matInput value="{{data.cliente.nombre}}" [formControl]="nombreCliente">
+            <input matInput value="{{data.cliente.nombre}}" [formControl]="nombreCliente" required>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Dirección del cliente</mat-label>
-            <input matInput value="{{data.cliente.direccion}}" [formControl]="direccionCliente">
+            <input matInput value="{{data.cliente.direccion}}" [formControl]="direccionCliente" required>
         </mat-form-field>
 
         <div class="botones">

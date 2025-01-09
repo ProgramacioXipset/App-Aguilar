@@ -1,0 +1,57 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 99%;
+    padding: 30px;
+}
+
+.container h2 {
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+mat-slide-toggle {
+    margin-bottom: 20px;
+}
+
+.container form {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+form {
+    width: 100%;
+}
+
+.botones {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.actualizar {
+    width: 50%;
+}
+
+.pass {
+    width: 20%;
+    background-color: rgb(53, 138, 71) !important;
+}
+
+.eliminar {
+    width: 20%;
+    background-color: red !important;
+}
+
+mat-form-field {
+    width: 60%;
+}

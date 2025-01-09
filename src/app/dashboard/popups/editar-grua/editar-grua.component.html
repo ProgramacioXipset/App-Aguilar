@@ -4,7 +4,7 @@
     <form [formGroup]="options" (ngSubmit)="submitForm()">
         <mat-form-field appearance="outline">
             <mat-label>Nombre de la grúa</mat-label>
-            <input matInput value="{{data.grua.nombre}}" [formControl]="nombreGrua">
+            <input matInput value="{{data.grua.nombre}}" [formControl]="nombreGrua" required>
           </mat-form-field>
 
           <div class="botones">

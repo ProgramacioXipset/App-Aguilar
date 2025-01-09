@@ -18,8 +18,8 @@ export class AnadirComponent {
     console.log("Hola");
     
     const dialogRef = this.dialog.open(AnadirTareaComponent, {
-      height: '500px',
-      width: '1000px',
+      height: '800px',
+      width: '2000px',
     });
 
     dialogRef.afterClosed().subscribe(result => {

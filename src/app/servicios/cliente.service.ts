@@ -88,4 +88,13 @@ export class ClienteService {
   getClientes (): Observable<Cliente[]> {
     return this.http.get<Cliente []>("http://localhost:8181/Cliente");
   }
+
+  encontrarCliente(id: number, arrayCliente: Cliente[]): Cliente | null {
+    for(const cliente of arrayCliente) {
+      if (cliente.id === id) {
+        return cliente;
+      }
+    }
+    return null;
+  }
 }

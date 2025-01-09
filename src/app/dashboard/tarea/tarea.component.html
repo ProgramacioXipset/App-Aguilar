@@ -1,0 +1,5 @@
+<ng-container *ngFor="let tarea of tareas">
+    <ng-container *ngIf="(usuario?.id === tarea.usuario?.id) && fechaDate && (compararFechas(tarea.fecha_inicio, fechaDate))">
+        <div>Tarea {{ tarea.id }}</div>
+    </ng-container>
+</ng-container>

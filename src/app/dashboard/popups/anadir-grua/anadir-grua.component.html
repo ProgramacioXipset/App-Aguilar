@@ -4,7 +4,7 @@
     <form [formGroup]="options" (ngSubmit)="submitForm()">
         <mat-form-field appearance="outline">
             <mat-label>Nombre de la grúa</mat-label>
-            <input matInput placeholder="Ejemplo: 12mt" [formControl]="nombreGrua">
+            <input matInput placeholder="Ejemplo: 12mt" [formControl]="nombreGrua" required>
         </mat-form-field>
 
         <button mat-flat-button>Añadir</button>
