@@ -44,6 +44,11 @@
           </mat-select>
         </mat-form-field>
 
+        <mat-form-field appearance="outline">
+          <mat-label>Nota</mat-label>
+          <input matInput placeholder="Ejemplo: 12mt" [formControl]="notaControl" required>
+        </mat-form-field>
+
         <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [formControl]="duracionControl" required>
           <mat-button-toggle class="rapida" value="rapida">Rápida</mat-button-toggle>
           <mat-button-toggle class="medio-dia" value="medio-dia">Medio día</mat-button-toggle>

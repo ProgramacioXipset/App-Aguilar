@@ -10,4 +10,5 @@ export interface Tarea {
     usuario: User;
     grua: Grua;
     cliente: Cliente;
+    nota: string;
 }

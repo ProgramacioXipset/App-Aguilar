@@ -47,6 +47,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { ListaTareaComponent } from './dashboard/popups/lista-tarea/lista-tarea.component';
 import { EditarTareaComponent } from './dashboard/popups/editar-tarea/editar-tarea.component';
 import { TareaComponent } from './dashboard/tarea/tarea.component';
+import { RecuadroTareaComponent } from './dashboard/tarea/recuadro-tarea/recuadro-tarea.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -71,7 +72,8 @@ registerLocaleData(localeEs, 'es');
     EditarContrasenaUsuarioComponent,
     ListaTareaComponent,
     EditarTareaComponent,
-    TareaComponent // Declara LoginComponent
+    TareaComponent,
+    RecuadroTareaComponent // Declara LoginComponent
   ],
   imports: [
     BrowserModule,

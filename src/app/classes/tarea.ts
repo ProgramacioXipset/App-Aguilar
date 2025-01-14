@@ -10,6 +10,7 @@ export class Tarea {
         public duracion: number,
         public usuario: User | null,
         public grua: Grua | null,
-        public cliente: Cliente | null
+        public cliente: Cliente | null,
+        public nota: string | null
     ) {}
 }

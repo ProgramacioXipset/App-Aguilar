@@ -32,6 +32,7 @@ export class AnadirTareaComponent {
   clienteControl = new FormControl();
   gruaControl = new FormControl();
   duracionControl = new FormControl();
+  notaControl = new FormControl();
 
   constructor(private _formBuilder: FormBuilder, public user: UserService, private eventosService: EventosService, private clientesService: ClienteService, private gruasService: GruaService, private tareasService: TareaService) {
     this.options = this._formBuilder.group({
@@ -40,7 +41,8 @@ export class AnadirTareaComponent {
       horaControl: this.horaControl,
       clienteControl: this.clienteControl,
       gruaControl: this.gruaControl,
-      duracionControl: this.duracionControl
+      duracionControl: this.duracionControl,
+      notaControl: this.notaControl
     });
   }
 
@@ -88,7 +90,7 @@ export class AnadirTareaComponent {
     const usuario = this.tareasService.encontrarUsuario(this.usuarioControl.value, this.usuarios);
     const grua = this.gruasService.encontrarGrua(this.gruaControl.value, this.gruas);
     const cliente = this.clientesService.encontrarCliente(this.clienteControl.value, this.clientes);
-    const tarea = new Tarea(fechaInicio, fechaFinal, duracion, usuario, grua, cliente);
+    const tarea = new Tarea(fechaInicio, fechaFinal, duracion, usuario, grua, cliente, this.notaControl.value);
     this.tareasService.postTarea(tarea).subscribe(
       (resultat: string) => {
         console.log(resultat);  // Aquí obtienes el mensaje

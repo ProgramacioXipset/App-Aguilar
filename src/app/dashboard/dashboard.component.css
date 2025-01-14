@@ -30,3 +30,9 @@ td, th {
   -moz-box-shadow: inset 0px 0px 20px 0px rgba(65,143,222,1);
   box-shadow: inset 0px 0px 20px 0px rgba(65,143,222,1);
 }
+
+app-tarea {
+  display: block;
+  height: 120px;
+  width: 100%;
+}

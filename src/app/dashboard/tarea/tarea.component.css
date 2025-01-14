@@ -1,0 +1,13 @@
+.container {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+app-recuadro-tarea {
+    height: 120px;
+    width: 100%;
+    padding: 0;
+}

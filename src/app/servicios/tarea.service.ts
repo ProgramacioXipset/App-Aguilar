@@ -22,7 +22,8 @@ export class TareaService {
                  rol: tarea.usuario?.rol
                },
       grua: { id: +tarea.grua?.id },
-      cliente: { id: +tarea.cliente?.id }
+      cliente: { id: +tarea.cliente?.id },
+      nota: tarea.nota
     };
 
     if (endpoint) {
@@ -122,7 +123,8 @@ export class TareaService {
                  rol: tarea.usuario?.rol
                },
       grua: { id: +tarea.grua?.id },
-      cliente: { id: +tarea.cliente?.id }
+      cliente: { id: +tarea.cliente?.id },
+      nota: tarea.nota
     };
 
     if (endpoint) {

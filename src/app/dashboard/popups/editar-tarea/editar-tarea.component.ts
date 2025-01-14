@@ -32,6 +32,7 @@ export class EditarTareaComponent {
   clienteControl = new FormControl();
   gruaControl = new FormControl();
   duracionControl = new FormControl();
+  notaControl = new FormControl();
 
   constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data: {tarea: Tarea}, private _formBuilder: FormBuilder, public user: UserService, private eventosService: EventosService, private clientesService: ClienteService, private gruasService: GruaService, private tareasService: TareaService) {
     const hora = new Date(data.tarea.fecha_inicio);
@@ -44,6 +45,7 @@ export class EditarTareaComponent {
     this.clienteControl = new FormControl(this.data.tarea.cliente?.id);
     this.gruaControl = new FormControl(this.data.tarea.grua?.id);
     this.duracionControl = new FormControl(duracion);
+    this.notaControl = new FormControl(this.data.tarea.nota);
     
     this.options = this._formBuilder.group({
       usuarioControl: this.usuarioControl,
@@ -51,7 +53,8 @@ export class EditarTareaComponent {
       horaControl: this.horaControl,
       clienteControl: this.clienteControl,
       gruaControl: this.gruaControl,
-      duracionControl: this.duracionControl
+      duracionControl: this.duracionControl,
+      notaControl: this.notaControl
     });
   }
 
@@ -99,7 +102,7 @@ export class EditarTareaComponent {
     const usuario = this.tareasService.encontrarUsuario(this.usuarioControl.value, this.usuarios);
     const grua = this.gruasService.encontrarGrua(this.gruaControl.value, this.gruas);
     const cliente = this.clientesService.encontrarCliente(this.clienteControl.value, this.clientes);
-    const tarea = new Tarea(fechaInicio, fechaFinal, duracion, usuario, grua, cliente);
+    const tarea = new Tarea(fechaInicio, fechaFinal, duracion, usuario, grua, cliente, this.notaControl.value);
     tarea.id = this.data.tarea.id;
     this.tareasService.putTarea(tarea).subscribe(
       (resultat: string) => {

@@ -34,10 +34,23 @@ export class TareaComponent {
   fechaDate: Date | undefined;
 
   tareas: Tarea [] = [];
+  tareasVisibles: any[] = [];
+  visibleIndex: number = 0;
   
   private tareaCreatedSubscription!: Subscription;
 
   constructor(private eventosService: EventosService, public tarea: TareaService) {}
+
+  contarTareasValidas() {
+    this.tareasVisibles = this.tareas.filter(
+      (tarea) =>
+        this.usuario?.id === tarea.usuario?.id &&
+        this.fechaDate &&
+        this.compararFechas(tarea.fecha_inicio, this.fechaDate)
+    );
+    console.log(this.tareasVisibles);
+    
+  }
 
   ngOnInit(): void {
     this.cargarTareas();
@@ -80,6 +93,7 @@ export class TareaComponent {
     this.tarea.getTareas().subscribe(
       (tareas: Tarea[]) => {
         this.tareas = tareas;
+        this.contarTareasValidas();
       },
       (error) => {
         console.error('Error al cargar los usuarios:', error);
@@ -90,6 +104,7 @@ export class TareaComponent {
 
   actualizarFechaDate(): void {
     this.fechaDate = this.convertirADate(this._fecha, this._hora);
+    this.contarTareasValidas();
   }
 
   convertirADate(fecha: Date | string | undefined | null, hora: string | undefined | null): Date | undefined {
@@ -116,5 +131,17 @@ export class TareaComponent {
       return new Date(año, mes, dia, horaInt);
     }
     return undefined;
+  }
+
+  siguienteTarea(tarea: Tarea){
+    if (this.visibleIndex < this.tareasVisibles.length - 1) {
+      this.visibleIndex++;
+    }
+  }
+
+  anteriorTarea(tarea: Tarea){
+    if (this.visibleIndex > 0) {
+      this.visibleIndex--;
+    }
   }
 }
