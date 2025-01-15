@@ -73,9 +73,29 @@ public class UsuarioController {
 		Usuario_seleccionado.setId(Usuario.getId());
 		Usuario_seleccionado.setUsername(Usuario.getUsername());
 		Usuario_seleccionado.setApellidos(Usuario.getApellidos());
-		Usuario_seleccionado.setPassword(bCryptPasswordEncoder.encode(Usuario.getPassword()));
+		Usuario_seleccionado.setPassword(Usuario_seleccionado.getPassword());
 		Usuario_seleccionado.setEmail(Usuario.getEmail());
 		Usuario_seleccionado.setRol(Usuario.getRol());
+
+		Usuario_actualizado = UsuarioServiceImpl.actualizarUsuario(Usuario_seleccionado);
+
+		return Usuario_actualizado;
+	}
+
+	@PutMapping("/users/pass/{id}")
+	public Usuario actualizarPassUsuario(@PathVariable(name = "id") int Codigo, @RequestBody Usuario Usuario) {
+
+		Usuario Usuario_seleccionado = new Usuario();
+		Usuario Usuario_actualizado = new Usuario();
+
+		Usuario_seleccionado = iUsuarioDAO.findById(Codigo).get();
+
+		Usuario_seleccionado.setId(Usuario_seleccionado.getId());
+		Usuario_seleccionado.setUsername(Usuario_seleccionado.getUsername());
+		Usuario_seleccionado.setApellidos(Usuario_seleccionado.getApellidos());
+		Usuario_seleccionado.setPassword(bCryptPasswordEncoder.encode(Usuario.getPassword()));
+		Usuario_seleccionado.setEmail(Usuario_seleccionado.getEmail());
+		Usuario_seleccionado.setRol(Usuario_seleccionado.getRol());
 
 		Usuario_actualizado = UsuarioServiceImpl.actualizarUsuario(Usuario_seleccionado);
 
@@ -87,5 +107,4 @@ public class UsuarioController {
 		iUsuarioDAO.deleteById(id);
 		return "User deleted.";
 	}
-	
 }

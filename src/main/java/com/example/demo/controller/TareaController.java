@@ -58,6 +58,7 @@ public class TareaController {
 		Tarea_seleccionado.setUsuario(Tarea.getUsuario());
 		Tarea_seleccionado.setGrua(Tarea.getGrua());
 		Tarea_seleccionado.setCliente(Tarea.getCliente());
+		Tarea_seleccionado.setNota(Tarea.getNota());
 
 		Tarea_actualizado = TareaServiceImpl.actualizarTarea(Tarea_seleccionado);
 

@@ -43,13 +43,16 @@ public class Tarea {
 	@JoinColumn(name = "cliente")
     @JsonIgnoreProperties({ "tarea" })
 	Cliente cliente;
+	
+	@Column(name = "nota")//no hace falta si se llama igual
+	private String nota;
 
 	public Tarea() {
 		super();
 	}
 
 	public Tarea(int id, LocalDateTime fecha_inicio, LocalDateTime fecha_final, Integer duracion, Usuario usuario,
-			Grua grua, Cliente cliente) {
+			Grua grua, Cliente cliente, String nota) {
 		super();
 		this.id = id;
 		this.fecha_inicio = fecha_inicio;
@@ -58,6 +61,7 @@ public class Tarea {
 		this.usuario = usuario;
 		this.grua = grua;
 		this.cliente = cliente;
+		this.nota = nota;
 	}
 
 	public int getId() {
@@ -116,10 +120,18 @@ public class Tarea {
 		this.cliente = cliente;
 	}
 
+	public String getNota() {
+		return nota;
+	}
+
+	public void setNota(String nota) {
+		this.nota = nota;
+	}
+
 	@Override
 	public String toString() {
 		return "Tarea [id=" + id + ", fecha_inicio=" + fecha_inicio + ", fecha_final=" + fecha_final + ", duracion="
-				+ duracion + ", usuario=" + usuario + ", grua=" + grua + ", cliente="
-				+ cliente + "]";
+				+ duracion + ", usuario=" + usuario + ", grua=" + grua + ", cliente=" + cliente + ", nota=" + nota
+				+ "]";
 	}
 }
