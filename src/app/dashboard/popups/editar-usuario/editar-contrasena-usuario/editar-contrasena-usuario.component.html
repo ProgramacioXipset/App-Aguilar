@@ -1,0 +1,22 @@
+<div class="container">
+    <h2>Modificar contraseña</h2>
+
+    <form [formGroup]="options" (ngSubmit)="submitForm()">
+        <mat-form-field appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <input matInput [type]="hide() ? 'password' : 'text'" [formControl]="contrasenaUsuario"/>
+            <button
+              mat-icon-button
+              matSuffix
+              required
+              (click)="clickEvent($event)"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide()"
+            >
+              <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+
+        <button mat-flat-button>Actualizar</button>
+    </form>
+</div>

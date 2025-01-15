@@ -1,0 +1,15 @@
+<div class="container">
+    <h2>Editar {{ data.grua.nombre }}</h2>
+
+    <form [formGroup]="options" (ngSubmit)="submitForm()">
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre de la grúa</mat-label>
+            <input matInput value="{{data.grua.nombre}}" [formControl]="nombreGrua" required>
+          </mat-form-field>
+
+          <div class="botones">
+            <button mat-flat-button class="actualizar">Actualizar</button>
+            <button (click)="eliminarGrua()" mat-flat-button class="eliminar">Eliminar</button>
+          </div>
+    </form>
+</div>

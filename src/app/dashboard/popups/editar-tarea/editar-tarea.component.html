@@ -1,0 +1,70 @@
+<div class="container">
+    <h2>Editar tarea</h2>
+
+    <form [formGroup]="options" (ngSubmit)="submitForm()">
+        <mat-form-field appearance="outline">
+            <mat-label>Usuario</mat-label>
+            <mat-select [formControl]="usuarioControl" required>
+                @for (usuario of usuarios; track usuario) {
+                  @if (usuario.rol === "USER") {
+                    <mat-option [value]="usuario.id">{{usuario.username}}</mat-option>
+                  }
+                }
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Fecha</mat-label>
+            <input matInput [matDatepicker]="picker" [formControl]="fechaControl" required>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+          
+        <igx-time-picker mode="dialog" [inputFormat]="'HH'" [formControl]="horaControl" required>
+            <label igxLabel>Home Time </label>
+            <igx-picker-toggle igxSuffix>
+            </igx-picker-toggle>
+        </igx-time-picker>
+
+        <div class="cliente">
+          <mat-form-field appearance="outline">
+            <mat-label>Cliente</mat-label>
+            <mat-select [formControl]="clienteControl" required>
+                @for (cliente of clientes; track cliente) {
+                <mat-option [value]="cliente.id">{{cliente.nombre}}</mat-option>
+                }
+            </mat-select>
+          </mat-form-field>
+          <svg (click)="openClienteAdd()" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+          </svg>
+        </div>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Grua</mat-label>
+          <mat-select [formControl]="gruaControl" required>
+              @for (grua of gruas; track grua) {
+              <mat-option [value]="grua.id">{{grua.nombre}}</mat-option>
+              }
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Nota</mat-label>
+          <input matInput placeholder="Ejemplo: 12mt" [formControl]="notaControl" required>
+        </mat-form-field>
+
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [formControl]="duracionControl" required>
+          <mat-button-toggle class="rapida" value="rapida">Rápida</mat-button-toggle>
+          <mat-button-toggle class="medio-dia" value="medio-dia">Medio día</mat-button-toggle>
+          <mat-button-toggle class="todo-dia" value="todo-dia">Todo el día</mat-button-toggle>
+          <mat-button-toggle class="itv" value="itv">ITV</mat-button-toggle>
+        </mat-button-toggle-group>
+        
+
+        <div class="botones">
+          <button mat-flat-button class="actualizar">Actualizar</button>
+          <button (click)="eliminarTarea()" mat-flat-button class="eliminar">Eliminar</button>
+        </div>
+    </form>
+</div>

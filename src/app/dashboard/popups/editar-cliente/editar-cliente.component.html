@@ -1,0 +1,20 @@
+<div class="container">
+    <h2>Editar {{ data.cliente.nombre }}</h2>
+
+    <form [formGroup]="options" (ngSubmit)="submitForm()">
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre del cliente</mat-label>
+            <input matInput value="{{data.cliente.nombre}}" [formControl]="nombreCliente" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Dirección del cliente</mat-label>
+            <input matInput value="{{data.cliente.direccion}}" [formControl]="direccionCliente" required>
+        </mat-form-field>
+
+        <div class="botones">
+            <button mat-flat-button class="actualizar">Actualizar</button>
+            <button (click)="eliminarCliente()" mat-flat-button class="eliminar">Eliminar</button>
+        </div>
+    </form>
+</div>

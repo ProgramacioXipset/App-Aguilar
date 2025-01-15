@@ -1,0 +1,19 @@
+<div class="contenedor">
+    <h2>Lista de clientes</h2>
+    <table>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Email</th>
+        <th>Rol</th>
+        <ng-container *ngFor="let usuario of usuarios">
+            <tr (click)="openDialog(usuario)">
+                <td>{{ usuario.id }}</td>
+                <td>{{ usuario.username }}</td>
+                <td>{{ usuario.apellidos }}</td>
+                <td>{{ usuario.email }}</td>
+                <td>{{ usuario.rol }}</td>
+            </tr>
+        </ng-container>
+    </table>
+</div>

@@ -1,0 +1,91 @@
+.verde {
+    background-color: #aedd94;
+}
+
+.amarillo {
+    background-color: #fef8a0;
+}
+
+.roja {
+    background-color: #ffb4b0;
+}
+
+.azul {
+    background-color: #a0c9fe;
+}
+
+.recuadro {
+    display: block;
+    height: 120px;
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: box-shadow 0.5s ease;
+}
+
+.recuadro:hover {
+  -webkit-box-shadow: inset 0px 0px 20px 0px rgba(65,143,222,1);
+  -moz-box-shadow: inset 0px 0px 20px 0px rgba(65,143,222,1);
+  box-shadow: inset 0px 0px 20px 0px rgba(65,143,222,1);
+}
+
+.arriba {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: white;
+}
+
+.hora {
+    background-color: #999999;
+    padding: 0 10px;
+}
+
+.cliente {
+    background-color: #428bca;
+    padding: 0 10px;
+}
+
+.centro {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.centro.centrado {
+    justify-content: space-between;
+}
+
+.flecha {
+    display: none;
+}
+
+.flecha.mostrar {
+    display: block;
+}
+
+.grua {
+    color: white;
+    width: 100%;
+    background-color: #428bca;
+}
+
+.numeroTareas {
+    display: none;
+    width: 20%;
+    background-color: #ff5d55;
+    color: white;
+}
+
+.numeroTareas.mostrar {
+    display: block;
+}
+
+.abajo {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+

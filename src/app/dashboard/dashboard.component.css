@@ -1,0 +1,38 @@
+.tabla {
+  width: 100vw;
+}
+
+table, th, td {
+  border: 1px solid #c8c8c8;
+  border-collapse: collapse;
+  transition: box-shadow 0.5s ease;
+}
+
+tr {
+  height: 120px;
+}
+
+app-opciones {
+  display: block;
+  height: 120px;
+  width: 100%;
+  background-color: #c8c8c8;
+}
+
+td, th {
+  width: 11.111%;
+  padding: 0;
+  text-align: center;
+}
+
+.usuario:hover {
+  -webkit-box-shadow: inset 0px 0px 20px 0px rgba(65,143,222,1);
+  -moz-box-shadow: inset 0px 0px 20px 0px rgba(65,143,222,1);
+  box-shadow: inset 0px 0px 20px 0px rgba(65,143,222,1);
+}
+
+app-tarea {
+  display: block;
+  height: 120px;
+  width: 100%;
+}

@@ -1,0 +1,40 @@
+.contenedor {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tabla-scroll {
+    width: 80%;
+    height: 300px; /* Define la altura máxima del contenedor */
+    overflow: auto; /* Habilita el scroll */
+    border: 1px solid #c8c8c8; /* Opcional: bordes para el contenedor */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    position: sticky;
+    top: 0;
+    background-color: #f9f9f9; /* Fondo para que se distinga del scroll */
+    z-index: 1;
+}
+
+tr {
+    border: 1px solid #c8c8c8;
+    transition: border 0.5s ease;
+}
+
+tr:hover {
+    border: 2px solid #418fde;
+}
+
+td, th {
+    padding: 10px 5px;
+    text-align: left;
+}

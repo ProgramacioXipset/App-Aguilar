@@ -1,0 +1,5 @@
+<div class="container">
+    <ng-container *ngFor="let tarea of tareasVisibles; let i = index">
+        <app-recuadro-tarea (diaAnterior)="anteriorTarea(tarea)" (diaSiguiente)="siguienteTarea(tarea)" [tarea]="tarea" [nTareas]="tareasVisibles.length"[style.display]="i === visibleIndex ? 'block' : 'none'"></app-recuadro-tarea>
+    </ng-container>
+</div>
