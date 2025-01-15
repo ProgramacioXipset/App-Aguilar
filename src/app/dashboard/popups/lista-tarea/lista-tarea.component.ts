@@ -28,7 +28,7 @@ export class ListaTareaComponent {
   cargarTareas() {
     this.tareaService.getTareas().subscribe(
       (tareas: any[]) => {
-        this.tareas = tareas;
+        this.tareas = tareas.reverse();
       },
       (error) => {
         console.error('Error al cargar las tareas:', error);

@@ -1,7 +1,5 @@
 <div class="container">
     <ng-container *ngFor="let tarea of tareasVisibles; let i = index">
-        <!-- <ng-container *ngIf="(usuario?.id === tarea.usuario?.id) && fechaDate && (compararFechas(tarea.fecha_inicio, fechaDate))">             -->
-            <app-recuadro-tarea (diaAnterior)="anteriorTarea(tarea)" (diaSiguiente)="siguienteTarea(tarea)" [tarea]="tarea" [nTareas]="tareasVisibles.length"[style.display]="i === visibleIndex ? 'block' : 'none'"></app-recuadro-tarea>
-        <!-- </ng-container> -->
+        <app-recuadro-tarea (diaAnterior)="anteriorTarea(tarea)" (diaSiguiente)="siguienteTarea(tarea)" [tarea]="tarea" [nTareas]="tareasVisibles.length"[style.display]="i === visibleIndex ? 'block' : 'none'"></app-recuadro-tarea>
     </ng-container>
 </div>

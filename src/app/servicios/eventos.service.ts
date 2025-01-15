@@ -7,9 +7,11 @@ import { Subject } from 'rxjs';
 export class EventosService {
   private userCreatedSource = new Subject<void>();
   private tareaCreatedSource = new Subject<void>();
+  private clienteCreatedSource = new Subject<void>();
 
   userCreated$ = this.userCreatedSource.asObservable();
   tareaCreated$ = this.tareaCreatedSource.asObservable();
+  clienteCreated$ = this.clienteCreatedSource.asObservable();
 
   emitUserCreated() {
     this.userCreatedSource.next();
@@ -17,5 +19,9 @@ export class EventosService {
 
   emitTareaCreated() {
     this.tareaCreatedSource.next();
+  }
+
+  emitClienteCreated() {
+    this.clienteCreatedSource.next();
   }
 }

@@ -16,7 +16,7 @@ export class ListaClientesComponent {
 
   ngOnInit(): void {
     this.clienteService.getClientes().subscribe((data) => {
-      this.clientes = data; // La respuesta debe ajustarse a la interfaz Usuario
+      this.clientes = data.reverse(); // La respuesta debe ajustarse a la interfaz Usuario
     });
   }
 

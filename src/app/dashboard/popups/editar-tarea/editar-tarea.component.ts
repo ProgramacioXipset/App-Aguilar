@@ -13,6 +13,7 @@ import { TareaService } from '../../../servicios/tarea.service';
 import { Tarea } from '../../../classes/tarea';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { AnadirClienteComponent } from '../anadir-cliente/anadir-cliente.component';
 @Component({
   selector: 'app-editar-tarea',
   templateUrl: './editar-tarea.component.html',
@@ -25,6 +26,7 @@ export class EditarTareaComponent {
   gruas: Grua[] = [];
   options: FormGroup;
   private userCreatedSubscription!: Subscription;
+  private clienteCreatedSubscription!: Subscription;
 
   usuarioControl = new FormControl();
   fechaControl = new FormControl();
@@ -60,19 +62,15 @@ export class EditarTareaComponent {
 
   ngOnInit(): void {
     this.cargarUsuarios();
+    this.cargarClientes();
 
     this.userCreatedSubscription = this.eventosService.userCreated$.subscribe(() => {
       this.cargarUsuarios();
     });
 
-    this.clientesService.getClientes().subscribe(
-      (clientes: any[]) => {
-        this.clientes = clientes;
-      },
-      (error) => {
-        console.error('Error al cargar los clientes:', error);
-      }
-    );
+    this.clienteCreatedSubscription = this.eventosService.clienteCreated$.subscribe(() => {
+      this.cargarClientes();
+    });
 
     this.gruasService.getGruas().subscribe(
       (gruas: any[]) => {
@@ -88,6 +86,17 @@ export class EditarTareaComponent {
     this.user.getUsers().subscribe(
       (usuarios: any[]) => {
         this.usuarios = usuarios;
+      },
+      (error) => {
+        console.error('Error al cargar los usuarios:', error);
+      }
+    );
+  }
+
+  cargarClientes() {
+    this.clientesService.getClientes().subscribe(
+      (clientes: any[]) => {
+        this.clientes = clientes;
       },
       (error) => {
         console.error('Error al cargar los usuarios:', error);
@@ -129,5 +138,16 @@ export class EditarTareaComponent {
     );
     
     this.dialog.closeAll();
+  }
+
+  openClienteAdd(): void {
+    const dialogRef = this.dialog.open(AnadirClienteComponent, {
+      height: '500px',
+      width: '1000px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }

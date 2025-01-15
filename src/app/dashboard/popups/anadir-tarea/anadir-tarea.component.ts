@@ -12,6 +12,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { TareaService } from '../../../servicios/tarea.service';
 import { Tarea } from '../../../classes/tarea';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { AnadirClienteComponent } from '../anadir-cliente/anadir-cliente.component';
 
 @Component({
   selector: 'app-anadir-tarea',
@@ -25,6 +27,7 @@ export class AnadirTareaComponent {
   gruas: Grua[] = [];
   options: FormGroup;
   private userCreatedSubscription!: Subscription;
+  private clienteCreatedSubscription!: Subscription;
 
   usuarioControl = new FormControl();
   fechaControl = new FormControl();
@@ -34,7 +37,7 @@ export class AnadirTareaComponent {
   duracionControl = new FormControl();
   notaControl = new FormControl();
 
-  constructor(private _formBuilder: FormBuilder, public user: UserService, private eventosService: EventosService, private clientesService: ClienteService, private gruasService: GruaService, private tareasService: TareaService) {
+  constructor(private _formBuilder: FormBuilder, public user: UserService, private eventosService: EventosService, private clientesService: ClienteService, private gruasService: GruaService, private tareasService: TareaService, public dialog: MatDialog) {
     this.options = this._formBuilder.group({
       usuarioControl: this.usuarioControl,
       fechaControl: this.fechaControl,
@@ -48,19 +51,15 @@ export class AnadirTareaComponent {
 
   ngOnInit(): void {
     this.cargarUsuarios();
+    this.cargarClientes();
 
     this.userCreatedSubscription = this.eventosService.userCreated$.subscribe(() => {
       this.cargarUsuarios();
     });
 
-    this.clientesService.getClientes().subscribe(
-      (clientes: any[]) => {
-        this.clientes = clientes;
-      },
-      (error) => {
-        console.error('Error al cargar los clientes:', error);
-      }
-    );
+    this.clienteCreatedSubscription = this.eventosService.clienteCreated$.subscribe(() => {
+      this.cargarClientes();
+    });
 
     this.gruasService.getGruas().subscribe(
       (gruas: any[]) => {
@@ -76,6 +75,17 @@ export class AnadirTareaComponent {
     this.user.getUsers().subscribe(
       (usuarios: any[]) => {
         this.usuarios = usuarios;
+      },
+      (error) => {
+        console.error('Error al cargar los usuarios:', error);
+      }
+    );
+  }
+
+  cargarClientes() {
+    this.clientesService.getClientes().subscribe(
+      (clientes: any[]) => {
+        this.clientes = clientes;
       },
       (error) => {
         console.error('Error al cargar los usuarios:', error);
@@ -103,5 +113,16 @@ export class AnadirTareaComponent {
         this._snackBar.open("Error al enviar el formulario, puede que la grua ya esté ocupada", "Hecho", { duration: 3000 });
       }
     );
+  }
+
+  openClienteAdd(): void {
+    const dialogRef = this.dialog.open(AnadirClienteComponent, {
+      height: '500px',
+      width: '1000px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }

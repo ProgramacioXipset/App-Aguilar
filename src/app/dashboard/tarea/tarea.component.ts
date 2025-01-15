@@ -47,9 +47,7 @@ export class TareaComponent {
         this.usuario?.id === tarea.usuario?.id &&
         this.fechaDate &&
         this.compararFechas(tarea.fecha_inicio, this.fechaDate)
-    );
-    console.log(this.tareasVisibles);
-    
+    );    
   }
 
   ngOnInit(): void {

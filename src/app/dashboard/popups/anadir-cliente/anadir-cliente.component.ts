@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Cliente } from '../../../classes/cliente';
 import { ClienteService } from '../../../servicios/cliente.service';
+import { EventosService } from '../../../servicios/eventos.service';
 
 @Component({
   selector: 'app-anadir-cliente',
@@ -16,7 +17,7 @@ export class AnadirClienteComponent {
   options: FormGroup;
   resultat: string = "";
 
-  constructor(private _formBuilder: FormBuilder, private clienteService: ClienteService) {
+  constructor(private _formBuilder: FormBuilder, private eventosService: EventosService, private clienteService: ClienteService) {
     this.options = this._formBuilder.group({
       nombreCliente: this.direccionCliente,
       direccionCliente: this.direccionCliente
@@ -29,6 +30,7 @@ export class AnadirClienteComponent {
       (resultat: string) => {
         console.log(resultat);  // Aquí obtienes el mensaje
         this._snackBar.open(resultat, "Hecho", { duration: 3000 });
+        this.eventosService.emitClienteCreated();
         this.options.reset();
       },
       (error) => {
