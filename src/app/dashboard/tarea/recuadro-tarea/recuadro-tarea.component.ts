@@ -12,13 +12,15 @@ import { EditarTareaComponent } from '../../popups/editar-tarea/editar-tarea.com
 export class RecuadroTareaComponent {
   @Input() tarea?: Tarea;
   @Input() nTareas?: number;
+  @Input() dividido?: string;
 
   @Output() diaSiguiente = new EventEmitter<void>();
   @Output() diaAnterior = new EventEmitter<void>();
 
   constructor(public dialog: MatDialog) {}
 
-  openDialog(tarea: Tarea | undefined): void {
+  openDialog(tarea: Tarea | undefined, event: MouseEvent): void {
+    event.stopPropagation();
     const dialogRef = this.dialog.open(EditarTareaComponent, {
       data: { tarea: tarea },
       height: '800px',

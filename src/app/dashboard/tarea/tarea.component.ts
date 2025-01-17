@@ -4,6 +4,8 @@ import { Tarea } from '../../classes/tarea';
 import { Subscription } from 'rxjs';
 import { EventosService } from '../../servicios/eventos.service';
 import { TareaService } from '../../servicios/tarea.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AnadirTareaComponent } from '../popups/anadir-tarea/anadir-tarea.component';
 
 @Component({
   selector: 'app-tarea',
@@ -39,14 +41,14 @@ export class TareaComponent {
   
   private tareaCreatedSubscription!: Subscription;
 
-  constructor(private eventosService: EventosService, public tarea: TareaService) {}
+  constructor(private eventosService: EventosService, public tarea: TareaService, public dialog: MatDialog) {}
 
   contarTareasValidas() {
     this.tareasVisibles = this.tareas.filter(
       (tarea) =>
         this.usuario?.id === tarea.usuario?.id &&
         this.fechaDate &&
-        this.compararFechas(tarea.fecha_inicio, this.fechaDate)
+        this.compararFechas(tarea.fecha_inicio, tarea.fecha_final, this.fechaDate)
     );    
   }
 
@@ -58,12 +60,13 @@ export class TareaComponent {
     });
   }
 
-  compararFechas(fechaTarea: Date, fechaCasilla: Date): boolean {
-    const fecha1 = fechaTarea instanceof Date ? fechaTarea : new Date(fechaTarea);
+  compararFechas(fechaInicioTarea: Date, fechaFinalTarea: Date, fechaCasilla: Date): boolean {
+    const fecha1 = fechaInicioTarea instanceof Date ? fechaInicioTarea : new Date(fechaInicioTarea);
     const fecha2 = fechaCasilla instanceof Date ? fechaCasilla : new Date(fechaCasilla);
+    const fecha3 = fechaFinalTarea instanceof Date ? fechaFinalTarea : new Date(fechaFinalTarea);
   
     // Validar si ambas fechas son válidas
-    if (isNaN(fecha1.getTime()) || isNaN(fecha2.getTime())) {
+    if (isNaN(fecha1.getTime()) || isNaN(fecha2.getTime()) || isNaN(fecha3.getTime())) {
       return false;
     }
   
@@ -71,7 +74,10 @@ export class TareaComponent {
     const mismaFecha = 
       fecha1.getDate() === fecha2.getDate() &&
       fecha1.getMonth() === fecha2.getMonth() &&
-      fecha1.getFullYear() === fecha2.getFullYear();
+      fecha1.getFullYear() === fecha2.getFullYear()&&
+      fecha3.getDate() === fecha2.getDate() &&
+      fecha3.getMonth() === fecha2.getMonth() &&
+      fecha3.getFullYear() === fecha2.getFullYear();
   
     if (!mismaFecha) {
       return false;
@@ -81,8 +87,9 @@ export class TareaComponent {
     const esManana = (hora: number) => hora >= 0 && hora < 12;
     const hora1 = fecha1.getHours();
     const hora2 = fecha2.getHours();
+    const hora3 = fecha3.getHours();
   
-    const mismaSesion = (esManana(hora1) && esManana(hora2)) || (!esManana(hora1) && !esManana(hora2));
+    const mismaSesion = ((esManana(hora1) && esManana(hora2)) || (!esManana(hora1) && !esManana(hora2)) || (esManana(hora3) && esManana(hora2)) || (!esManana(hora3) && !esManana(hora2)));
   
     return mismaSesion;
   }
@@ -141,5 +148,44 @@ export class TareaComponent {
     if (this.visibleIndex > 0) {
       this.visibleIndex--;
     }
+  }
+
+  dividido(tarea: Tarea): string {
+    let fechaInicio = tarea.fecha_inicio instanceof Date ? tarea.fecha_inicio : new Date(tarea.fecha_inicio);
+    let fechaFinal = tarea.fecha_final instanceof Date ? tarea.fecha_final : new Date(tarea.fecha_final);
+    var horaInt = 1;
+    
+    if (typeof this._hora === "string") {
+       horaInt = parseInt(this._hora);
+    }
+    if (fechaInicio.getHours() < 12 && fechaFinal.getHours() > 12) {
+      if(horaInt === 0) {
+        return "despues";
+      } else if (horaInt === 12) {
+        return "antes";
+      } else {
+        return "";
+      }
+    } else {
+      console.log("nada " + fechaInicio + " - " + horaInt);  
+      return "";
+    }
+  }
+
+  nuevaTarea(){
+    console.log(this.usuario?.id + "-" + this.fechaDate);
+    
+    const dialogRef = this.dialog.open(AnadirTareaComponent, {
+      data: { 
+        usuario: this.usuario,
+        dia: this.fechaDate
+       },
+      height: '800px',
+      width: '2000px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }

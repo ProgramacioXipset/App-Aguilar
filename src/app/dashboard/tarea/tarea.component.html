@@ -1,5 +1,5 @@
-<div class="container">
+<div class="container" (click)="nuevaTarea()">
     <ng-container *ngFor="let tarea of tareasVisibles; let i = index">
-        <app-recuadro-tarea (diaAnterior)="anteriorTarea(tarea)" (diaSiguiente)="siguienteTarea(tarea)" [tarea]="tarea" [nTareas]="tareasVisibles.length"[style.display]="i === visibleIndex ? 'block' : 'none'"></app-recuadro-tarea>
+        <app-recuadro-tarea (diaAnterior)="anteriorTarea(tarea)" (diaSiguiente)="siguienteTarea(tarea)" [tarea]="tarea" [dividido]="dividido(tarea)" [nTareas]="tareasVisibles.length"[style.display]="i === visibleIndex ? 'block' : 'none'"></app-recuadro-tarea>
     </ng-container>
 </div>

@@ -1,6 +1,6 @@
-<div (click)="openDialog(tarea)" class="recuadro" [ngClass]="{'verde': tarea?.duracion === 60, 'amarillo': tarea?.duracion === 240, 'roja': tarea?.duracion === 480, 'azul': tarea?.duracion === 120}">
+<div (click)="openDialog(tarea, $event)" class="recuadro" [ngClass]="{'verde': tarea?.duracion === 60, 'amarillo': tarea?.duracion === 240, 'roja': tarea?.duracion === 480, 'azul': tarea?.duracion === 120}">
     <div class="arriba">
-        <div class="hora">{{ tarea?.fecha_inicio | date: "HH:mm" }}</div>
+        <div class="hora">{{ tarea?.fecha_inicio | date: "HH:mm" }} - {{ tarea?.fecha_final | date: "HH:mm" }}</div>
         <div class="cliente">{{ tarea?.cliente?.nombre }}</div>
     </div>
     <div class="centro" [ngClass]="{'centrado': nTareas && nTareas > 1}">
@@ -17,7 +17,19 @@
         </div>
     </div>
     <div class="abajo">
-        <div class="grua">{{ tarea?.grua?.nombre }}</div>
+        <div class="grua">
+            <ng-container *ngIf="dividido == 'antes'">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+                </svg>
+            </ng-container>
+            {{ tarea?.grua?.nombre }}
+            <ng-container *ngIf="dividido == 'despues'">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                </svg>
+            </ng-container>
+        </div>
         <div class="numeroTareas" [ngClass]="{'mostrar': nTareas && nTareas > 1}">{{ nTareas }}</div>
     </div>
 </div>

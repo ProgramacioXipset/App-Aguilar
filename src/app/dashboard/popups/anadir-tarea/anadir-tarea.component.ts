@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { User } from '../../../classes/user';
 import { FechaService } from '../../../servicios/fecha.service';
 import { UserService } from '../../../servicios/user.service';
@@ -12,7 +12,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { TareaService } from '../../../servicios/tarea.service';
 import { Tarea } from '../../../classes/tarea';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { AnadirClienteComponent } from '../anadir-cliente/anadir-cliente.component';
 
 @Component({
@@ -37,7 +37,12 @@ export class AnadirTareaComponent {
   duracionControl = new FormControl();
   notaControl = new FormControl();
 
-  constructor(private _formBuilder: FormBuilder, public user: UserService, private eventosService: EventosService, private clientesService: ClienteService, private gruasService: GruaService, private tareasService: TareaService, public dialog: MatDialog) {
+  constructor(private _formBuilder: FormBuilder, public user: UserService, private eventosService: EventosService, private clientesService: ClienteService, private gruasService: GruaService, private tareasService: TareaService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data: {usuario: User | undefined, dia: Date | null | undefined}) {
+    if (data){
+      this.fechaControl = new FormControl(this.data.dia);
+      this.usuarioControl = new FormControl(this.data.usuario?.id);
+    }
+
     this.options = this._formBuilder.group({
       usuarioControl: this.usuarioControl,
       fechaControl: this.fechaControl,

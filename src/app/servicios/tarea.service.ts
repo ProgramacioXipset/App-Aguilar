@@ -95,6 +95,8 @@ export class TareaService {
   procesarFechaFinal(duracion: number, fechaInicio: Date): Date {
     const fechaFinal = new Date(fechaInicio);
     fechaFinal.setMinutes(fechaFinal.getMinutes() + duracion);
+    console.log("Hora calculada: " + fechaFinal);
+    
     return fechaFinal;
   }
 

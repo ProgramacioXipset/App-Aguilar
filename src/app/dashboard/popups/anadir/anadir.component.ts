@@ -15,7 +15,6 @@ export class AnadirComponent {
   constructor(public dialog: MatDialog) {}
 
   openTareaAdd(): void {
-    console.log("Hola");
     
     const dialogRef = this.dialog.open(AnadirTareaComponent, {
       height: '800px',
@@ -39,7 +38,6 @@ export class AnadirComponent {
   }
 
   openUserAdd(): void {
-    console.log("Hola");
     
     const dialogRef = this.dialog.open(AnadirUserComponent, {
       height: '500px',
@@ -52,7 +50,6 @@ export class AnadirComponent {
   }
 
   openGruaAdd(): void {
-    console.log("Hola");
     
     const dialogRef = this.dialog.open(AnadirGruaComponent, {
       height: '500px',
